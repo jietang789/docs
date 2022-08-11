@@ -1,2 +1,13 @@
-kubeadm init
-kubeadm join
+master init：
+kubeadm init  --control-plane-endpoint "{k8s-vip}:16443" --kubernetes-version=v1.22.1 --pod-network-cidr 172.168.30.0/24 --v=5
+
+kubeadm init  --control-plane-endpoint "135.160.161.253:16443" --kubernetes-version=v1.22.1 --pod-network-cidr 172.168.30.0/24 --v=5
+
+kubeadm init  --kubernetes-version=v1.22.1 --pod-network-cidr 172.168.30.0/24 --v=5
+
+master join：
+kubeadm join 135.160.161.253:6443 --token rbic18.083hqdixx7232kd2 --discovery-token-ca-cert-hash sha256:f6b5a44259a23bb4fe48d8d2787e0d1e8a591c75d54507ad3309e79680de98a1 --experimental-control-plane
+
+join：
+kubeadm  token create --print-join-command
+kubeadm join 135.160.161.253:6443 --token cvgbwn.lpvj3er7pbzujumm --discovery-token-ca-cert-hash sha256:329e27e990e54076edb7dab44b517834acf7ca196b574645cf349d8c4c8f21a6 
